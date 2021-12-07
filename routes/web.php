@@ -73,37 +73,37 @@ Route::get('/checkout', [
 
         'uses'=>'ProductController@getCheckout',
         'as'=>'checkout',
-        'middleware'=>'auth'
+        'middleware'=>'authenticated'
         ]);
         
 Route::post('/checkout', [
 'uses'=>'ProductController@postCheckout',
  'as'=>'checkout_submit',
-'middleware'=>'auth'
+'middleware'=>'authenticated'
  ]);
 
 Route::get('/change_password/', [
 'uses'=>'userController@getChangePassword',
  'as'=>'change_password',
-'middleware'=>'auth'
+'middleware'=>'authenticated'
  ]);
 
  Route::post('/reset_password/', [
 'uses'=>'userController@postChangePassword',
  'as'=>'reset_password',
-'middleware'=>'auth'
+'middleware'=>'authenticated'
  ]);
 
 Route::get('/delete_confirm/', [
 'uses'=>'userController@DeleteConfirm',
  'as'=>'delete_confirm',
-'middleware'=>'auth'
+'middleware'=>'authenticated'
  ]);
 
  Route::get('/delete/{id}', [
 'uses'=>'userController@Delete',
  'as'=>'user.delete',
-'middleware'=>'auth'
+'middleware'=>'authenticated'
  ]);
 
 Route::group(['prefix'=>'user'], function(){
@@ -145,7 +145,7 @@ Route::group(['prefix'=>'user'], function(){
      });
 
 
-    Route::group(['middleware'=>'auth'],function(){
+    Route::group(['middleware'=>'authenticated'],function(){
 
         Route::get('/profile/edit/{id}', [
 
@@ -199,10 +199,6 @@ Route::group(['prefix'=>'user'], function(){
          'as'=>'user.logout'
          ]);
     });
+});
     
-        
 
-}
-
-
-);
